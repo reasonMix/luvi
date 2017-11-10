@@ -34,6 +34,8 @@ int luaopen_rex_pcre(lua_State* L);
 int luvi_custom(lua_State* L);
 #endif
 
+void initCustomLoader(lua_State* _state);
+
 static int luvi_traceback(lua_State *L) {
   if (!lua_isstring(L, 1))  /* 'message' not a string? */
     return 1;  /* keep it intact */
@@ -54,6 +56,8 @@ static int luvi_traceback(lua_State *L) {
   lua_call(L, 2, 1);  /* call debug.traceback */
   return 1;
 }
+
+LUALIB_API int luaopen_cctea( lua_State *L );
 
 static lua_State* vm_acquire(){
   lua_State*L = luaL_newstate();
@@ -76,6 +80,9 @@ static lua_State* vm_acquire(){
   // Store uv module definition at preload.uv
   lua_pushcfunction(L, luaopen_luv);
   lua_setfield(L, -2, "uv");
+
+  lua_pushcfunction(L, luaopen_cctea);
+  lua_setfield(L, -2, "cctea");
 
   lua_pushcfunction(L, luaopen_env);
   lua_setfield(L, -2, "env");
@@ -130,6 +137,8 @@ static lua_State* vm_acquire(){
 #ifdef WITH_CUSTOM
   luvi_custom(L);
 #endif
+  initCustomLoader(L);
+
   return L;
 }
 
@@ -138,7 +147,7 @@ static void vm_release(lua_State*L) {
 }
 
 int main(int argc, char* argv[] ) {
-
+  printf("call luvi main function \n");
   lua_State* L;
   int index;
   int res;

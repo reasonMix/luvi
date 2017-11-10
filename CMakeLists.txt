@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 2.8.9)
 
 if(WIN32)
-  set(projects C ASM ASM_MASM)
+  set(projects C CXX ASM ASM_MASM)
 else()
-  set(projects C ASM)
+  set(projects C CXX ASM)
 endif()
 
 project(luvi ${projects})
@@ -119,6 +119,8 @@ if (WithZLIB)
   include(deps/zlib.cmake)
 endif (WithZLIB)
 
+include(deps/cctea.cmake)
+
 add_definitions( -DLUVI_VERSION="${LUVI_VERSION}" )
 
 if(MSVC)
@@ -140,6 +142,7 @@ endif ()
 lua_add_executable(luvi
   ${winsvc}
   src/main.c
+  src/customloader.cpp
   src/lua/init.lua
   src/lua/luvipath.lua
   src/lua/luvibundle.lua

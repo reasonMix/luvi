@@ -19,6 +19,8 @@ limitations under the License.
 local uv = require('uv')
 local luvi = require('luvi')
 local miniz = require('miniz')
+local cctea = require('cctea')
+print('cctea is ',cctea)
 
 local luviBundle = require('luvibundle')
 local commonBundle = luviBundle.commonBundle
