@@ -2,6 +2,8 @@ set(LUA_OPENSSL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/lua-openssl)
 
 include_directories(
   ${LUA_OPENSSL_DIR}/deps
+  ${LUA_OPENSSL_DIR}/deps/auxiliar
+  ${LUA_OPENSSL_DIR}/deps/lua-compat
   ${LUA_OPENSSL_DIR}/src
 )
 
@@ -13,7 +15,8 @@ endif()
 
 add_library(lua_openssl
   ${LUA_OPENSSL_DIR}/src/asn1.c
-  ${LUA_OPENSSL_DIR}/src/auxiliar.c
+  ${LUA_OPENSSL_DIR}/deps/auxiliar/auxiliar.c
+  ${LUA_OPENSSL_DIR}/deps/auxiliar/subsidiar.c
   ${LUA_OPENSSL_DIR}/src/bio.c
   ${LUA_OPENSSL_DIR}/src/callback.c
   ${LUA_OPENSSL_DIR}/src/cipher.c
@@ -49,6 +52,7 @@ add_library(lua_openssl
   ${LUA_OPENSSL_DIR}/src/xname.c
   ${LUA_OPENSSL_DIR}/src/xalgor.c
   ${LUA_OPENSSL_DIR}/src/xstore.c
+  ${LUA_OPENSSL_DIR}/src/srp.c
 )
 
 set_target_properties(lua_openssl PROPERTIES
