@@ -2,3 +2,4 @@
 #make regular
 #cp ./luvi /Users/$USER/work/StarGameServer/luvi
 cp ./build/luvi ../luvit
+cp ./build/luvi ../lit

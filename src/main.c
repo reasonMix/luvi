@@ -15,6 +15,9 @@
  *
  */
 
+#define lua_pushglobaltable(L) \
+  lua_pushvalue((L), LUA_GLOBALSINDEX)
+  
 #define LUA_LIB
 #include "luvi.h"
 #include "luv.h"
