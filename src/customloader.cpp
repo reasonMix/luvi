@@ -73,7 +73,7 @@ static char* readFile(char* name,char* mode,ssize_t* size) {
   if (isEncrypted("renhualiu",pBuf,len)) {
     //printf("file is encryped %s\n", name);
     xxtea_long dlen;
-    char* ret = decrypt(pBuf,"renhualiu",len,"developuse",&dlen);
+    char* ret = decrypt(pBuf,"renhualiu",len,"GamesCity",&dlen);
     free(pBuf);
     pBuf = ret;
     *size = dlen;
