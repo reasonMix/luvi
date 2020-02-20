@@ -5,7 +5,8 @@ extern "C" {
   #include "../deps/xxtea.h"
 }
 #include <stdio.h>
-
+#include <string.h>
+#include <stdlib.h>
 //#include <io.h>
 //#include <"sys/types.h">
 //#include<"sys/stat.h">
@@ -114,7 +115,7 @@ static int cocos2dx_lua_loader(lua_State *L)
     //printf("load lua %s\n", filename.c_str());
 
     // search file in package.path
-    unsigned char* chunk = nullptr;
+    unsigned char* chunk = NULL;
     ssize_t chunkSize = 0;
     std::string chunkName;
 
